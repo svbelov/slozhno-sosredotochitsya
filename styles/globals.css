@@ -3,7 +3,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 body {
@@ -39,4 +39,8 @@ a {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+}
+
+button:disabled {
+  pointer-events: none;
 }
