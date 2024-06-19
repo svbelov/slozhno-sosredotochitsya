@@ -4,7 +4,7 @@
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
 
   color: var(--text-color);
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, sans-serif), sans-serif;
   font-size: 18px;
   background-color: var(--bg-color);
   background-image: var(--bg-cover);
@@ -80,7 +80,7 @@
 }
 
 .header__theme-menu-button {
-  border: none;
+  border: 1px solid transparent; /* прозрачный border вместо border:none во избежание сдвига элементов */
   color: var(--btn-text-color);
   font-weight: 400;
   font-style: normal;
@@ -92,16 +92,16 @@
 }
 
 .header__theme-menu-button:hover {
-  border: 1px solid var(--btn-hover-border-color);
+  border-color: var(--btn-hover-border-color);
 }
 
 .header__theme-menu-button:focus {
-  border-block-end: 1px solid var(--btn-border-color);
+  border-block-end-color: var(--btn-border-color);
   outline: none;
 }
 
 .header__theme-menu-button_active {
-  border: 1px solid var(--btn-border-color);
+  border-color: var(--btn-border-color);
 }
 
 .header__title {
@@ -154,17 +154,15 @@
   gap: 20px;
 }
 
-.content__subtitle {
+.content__subtitle,
+.gallery__title {
   font-weight: 700;
   font-size: 18px;
   font-style: normal;
   line-height: 130%; /* or 23px */
 }
 
-.content__subtitle:not(
-    .answers-how .content__subtitle,
-    .gallery .content__subtitle
-  ) {
+.content__subtitle:not(.answers-how .content__subtitle) {
   margin-block-end: 10px;
 }
 
@@ -207,6 +205,7 @@
 .gallery__images {
   display: grid;
   gap: 10px;
+  contain: inline-size;
 }
 
 .gallery__image {
@@ -233,7 +232,7 @@
     7.25rem,
     7.0115rem + 1.0178vw,
     7.5rem
-  ); /* font-size: 116px; */
+  );
   font-style: normal;
   line-height: 82.5%; /* or 96px */
   text-shadow: 2px 2px 0 var(--accent-color);
@@ -273,9 +272,10 @@
     margin-block-end: 80px;
   }
 
-  .answers-how,
-  .reasons-why {
+  .reasons-why,
+  .answers-how {
     grid-template-columns: 1fr 2fr;
+    gap: 20px;
   }
 
   .content__title {
@@ -312,6 +312,7 @@
   .gallery__image-street {
     grid-column: span 2;
   }
+
 }
 
 @media (width > 900px) {
@@ -337,7 +338,17 @@
     inline-size: max(315px);
   }
 
+  .content__subtitle {
+    margin-block-end: 10px;
+  }
+
   .reasons-what ul {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .reasons-why,
+  .answers-how {
+    gap: 10px;
+  }
+
 }
